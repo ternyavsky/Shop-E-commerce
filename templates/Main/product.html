@@ -39,13 +39,13 @@
 						<div class="product-grid" style="background-image:url({{i.imageURL}});">
 							<div class="inner">
 								<p>
-									<a href="single.html" class="icon"><i class="icon-shopping-cart"></i></a>
-									<a href="single.html" class="icon"><i class="icon-eye"></i></a>
+									<a href="#" class="icon"><i class="icon-shopping-cart"></i></a>
+									<a href="{% url 'single' i.id %}" class="icon"><i class="icon-eye"></i></a>
 								</p>
 							</div>
 						</div>
 						<div class="desc">
-							<h3><a href="single.html">{{ i.title }}</a></h3>
+							<h3><a href="#">{{ i.title }}</a></h3>
 							<span class="price">${{ i.price }}</span>
 						</div>
 					</div>

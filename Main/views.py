@@ -28,3 +28,16 @@ def product(request):
         'products':products
     }
     return render(request,'Main/product.html',context)
+
+def single(request,id):
+    feedb = Feedback()
+    product = Product.objects.get(id=id)
+    feedback = Feedback.objects.filter(feedback = id)
+    context = {
+        'product':product,
+        'feedback':feedback
+    }
+    
+    
+
+    return render(request,'Main/single.html',context)

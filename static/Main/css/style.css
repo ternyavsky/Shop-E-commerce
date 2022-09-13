@@ -886,11 +886,11 @@ h1, h2, h3, h4, h5, h6, figure {
   float: left;
   margin: 0;
   padding: 0;
-  width: 33.33%;
+  width: 50%;
   text-align: center;
   list-style: none;
   display: -moz-inline-stack;
-  display: inline-block;
+
   zoom: 1;
   *display: inline;
 }
