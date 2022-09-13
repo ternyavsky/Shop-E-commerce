@@ -17,9 +17,16 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from Authenticate.views import Passwordresetview
+from Authenticate.views import Passwordchangeview
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('Main.urls')),
     path('',include('Authenticate.urls')),
+    path('accounts/',include('django.contrib.auth.urls')),
+    path('password_reset/',Passwordresetview.as_view(),name='passwordreset'),
+    path('reset/<uidb64>/<token>/',Passwordchangeview.as_view(),name='passwordchange')
+
+    
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

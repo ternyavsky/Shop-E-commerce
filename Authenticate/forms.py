@@ -18,6 +18,43 @@ class LoginForm(AuthenticationForm):
         'name':'password'}),
     ) 
 
+
+class ResetPasswordForm(PasswordResetForm):
+    email = forms.EmailField(
+        
+        max_length=254,
+        widget=forms.EmailInput(attrs={
+            "autocomplete": "email",
+            'class':'form-control',
+            'id':'email',
+            'placeholder':'Email',
+            'name':'email',
+            'type':'email'})
+    )
+
+class ConfirmPasswordForm(SetPasswordForm):
+    new_password1 = forms.CharField(
+       
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password",
+            'class':'form-control',
+            'id':'password',
+            'placeholder':'Password',
+            'name':'password',
+            'type':'password'})
+       
+    )
+    new_password2 = forms.CharField(
+      
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password",
+        'class':'form-control',
+            'id':'password',
+            'placeholder':'Password again',
+            'name':'password',
+            'type':'password'}))
+    
+    
+
+
 class RegistrationForm(UserCreationForm):
     email = forms.CharField(widget=forms.EmailInput(attrs={
         "autofocus": True,

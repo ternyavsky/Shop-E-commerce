@@ -3,6 +3,8 @@ from django.shortcuts import render,redirect
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView
+from django.urls import reverse_lazy
 
 
 def Login(request):
@@ -23,12 +25,22 @@ def Login(request):
     context = {
         'form':form
     }
-    return render(request,'Authenticate/login.html',context)
+    return render(request,'registration/login.html',context)
 
 def Logout(request):
     logout(request)
     return redirect('/')
 
+
+class Passwordresetview(PasswordResetView):
+    form_class = ResetPasswordForm
+    template_name: str = 'registration/password_reset_form.html'
+
+
+class Passwordchangeview(PasswordResetConfirmView):
+    form_class = ConfirmPasswordForm
+    template_name: str = 'registration/password_reset_confirm.html'
+    success_url = reverse_lazy('lin')
 
 def Registration(request):
     form = RegistrationForm
@@ -36,7 +48,7 @@ def Registration(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return redirect('lin')
         else:
             messages.error(request,'User already have')
             print('error')
@@ -44,4 +56,4 @@ def Registration(request):
     context = {
         'form':form
     }
-    return render(request,'Authenticate/registration.html',context)
+    return render(request,'registration/register.html',context)

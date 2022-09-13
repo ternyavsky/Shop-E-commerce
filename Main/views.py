@@ -4,7 +4,11 @@ from .models import *
 # Create your views here.
 
 def home(request):
-    return render(request,'Main/index.html')
+    products = Product.objects.all()[:3]
+    context = {
+        'preview_objects':products
+    }
+    return render(request,'Main/index.html',context)
 
 
 def contact(request):
