@@ -5,6 +5,9 @@
 
 <div class="container">
     <h3 class="display-1 text-center">Registration</h3>
+    
+    {{ form.clean_password2 }}
+    
     <form action="#" method="post" >
         {% csrf_token %}
         <div class="row form-group ">

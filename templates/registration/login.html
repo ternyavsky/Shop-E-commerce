@@ -5,6 +5,13 @@
 
 <div class="container">
     <h3 class="display-1 text-center">Login</h3>
+    {% if messages %}
+
+    {% for message in messages %}
+    <h4 class="text-center text-danger">{{ message }}</h4>
+    {% endfor %}
+
+{% endif %}
     <form action="#" method="post" >
         {% csrf_token %}
         <div class="row form-group ">

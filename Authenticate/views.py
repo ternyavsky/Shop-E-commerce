@@ -18,7 +18,7 @@ def Login(request):
             login(request,user)
             return redirect('about')
         else:
-            messages.error(request,'No valid login or password')
+            messages.error(request,'No valid login or password!')
     
 
 
@@ -50,8 +50,21 @@ def Registration(request):
             form.save()
             return redirect('lin')
         else:
-            messages.error(request,'User already have')
-            print('error')
+            form = RegistrationForm()
+            
+            
+    
+    #        if form.cleaned_data['password1'] != form.cleaned_data['password2']:
+     #           messages.error(request,"Passwords don't match!")
+      #      if r"^[\w.@+-]+\Z" in form.cleaned_data['username']:
+       #         messages.error(request,"Enter a valid username. This value may contain only letters, "
+        #"numbers, and @/./+/-/_ characters.")
+            
+        
+
+                
+        
+        
 
     context = {
         'form':form
