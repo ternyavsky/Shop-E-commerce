@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
 # Create your views here.
@@ -37,6 +37,11 @@ def single(request,id):
         'product':product,
         'feedback':feedback
     }
+    if request.method == 'POST':
+        author = request.user
+        text = request.POST.get('text')
+        Feedback.objects.create(author = author,text=text,feedback=product) 
+        return redirect('single',id)
     
     
 

@@ -3,6 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.core.exceptions import ValidationError
+from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.utils.translation import gettext_lazy as _
 class LoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={
@@ -105,9 +106,4 @@ class RegistrationForm(UserCreationForm):
     }))
 
 
-    def clean_password2(self):
-        password1 = self.cleaned_data["password1"]
-        password2 = self.cleaned_data["password2"]
-        if password1 and password2 and password1 != password2:
-            raise ValidationError(_("Passwords don't match"))
-        return password2
+    

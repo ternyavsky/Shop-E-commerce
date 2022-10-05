@@ -50,23 +50,15 @@ def Registration(request):
             form.save()
             return redirect('lin')
         else:
+            error = None
+            for field in form.errors:
+               error = field 
+            messages.error(request,form.errors[error])
+            print(form.errors)
             form = RegistrationForm()
-            
-            
-    
-    #        if form.cleaned_data['password1'] != form.cleaned_data['password2']:
-     #           messages.error(request,"Passwords don't match!")
-      #      if r"^[\w.@+-]+\Z" in form.cleaned_data['username']:
-       #         messages.error(request,"Enter a valid username. This value may contain only letters, "
-        #"numbers, and @/./+/-/_ characters.")
-            
         
-
-                
-        
-        
-
     context = {
         'form':form
+    
     }
     return render(request,'registration/register.html',context)
