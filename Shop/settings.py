@@ -56,7 +56,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Shop.urls'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
 
 
 TEMPLATES = [
@@ -132,6 +133,13 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = 'images/'
 MEDIA_ROOT = os.path.join(BASE_DIR / 'images/')
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'ternyavsky2016'
+EMAIL_HOST_PASSWORD = 'pviccpmycetpxmyy'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

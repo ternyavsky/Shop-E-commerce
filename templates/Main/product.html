@@ -16,7 +16,6 @@
 						<div class="display-tc animate-box" data-animate-effect="fadeIn">
 							<h1>Product</h1>
 							
-							
 						</div>
 					</div>
 				</div>
@@ -35,7 +34,6 @@
 			</div>
 			<div class="row">
 				{% for i in products %}
-				
 				<div class="col-md-4 text-center animate-box">
 					<div class="product">
 						<div class="product-grid" style="background-image:url({{i.imageURL}});">
@@ -46,7 +44,6 @@
 								</p>
 							</div>
 						</div>
-						<h1>{{ i.get_total }}</h1>
 						<div class="desc">
 							<h3><a href="{% url 'single' i.id %}">{{ i.title }}</a></h3>
 							<span class="price">${{ i.price }}</span>

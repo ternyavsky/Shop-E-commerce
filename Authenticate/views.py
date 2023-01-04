@@ -18,7 +18,7 @@ def Login(request):
             login(request,user)
             return redirect('about')
         else:
-            messages.error(request,'No valid login or password!')
+            messages.error(request,'No valid login or password')
     
 
 
@@ -50,15 +50,10 @@ def Registration(request):
             form.save()
             return redirect('lin')
         else:
-            error = None
-            for field in form.errors:
-               error = field 
-            messages.error(request,form.errors[error])
-            print(form.errors)
-            form = RegistrationForm()
-        
+            messages.error(request,'User already have')
+            print('error')
+
     context = {
         'form':form
-    
     }
     return render(request,'registration/register.html',context)

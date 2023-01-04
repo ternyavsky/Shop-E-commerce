@@ -23,8 +23,6 @@ class Product(models.Model):
             url = ''
         return url
 
-    
-
 class Feedback(models.Model):
     author = models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
     text = models.CharField(max_length=255)
