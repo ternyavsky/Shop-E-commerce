@@ -1,5 +1,8 @@
 from django.urls import path
 from . import views
+from .models import Product
+
+
 
 urlpatterns = [
     path('',views.home,name='home'),
@@ -8,6 +11,8 @@ urlpatterns = [
     path('products',views.product,name='product'),
     path('services',views.service,name='service'),
     path('single<int:id>/',views.single,name='single'),
-    path('cart',views.cart,name='cart')
+    path('cart',views.cart,name='cart'),
+    path('cart_add<int:product_id>',views.cart_add,name='cart_add'),
+    path('account<int:id>/',views.account,name='account'),
     
 ]

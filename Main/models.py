@@ -1,16 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
-
-
 class Product(models.Model):
     title = models.CharField(max_length=50)
-    price = models.DecimalField(max_digits=7,decimal_places=2)
+    price = models.DecimalField(max_digits=7, decimal_places=2)
     text = models.TextField(max_length=1000)
-    image = models.ImageField(null=True,blank=True)
-    
-
+    image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.title
@@ -18,13 +13,24 @@ class Product(models.Model):
     @property
     def imageURL(self):
         try:
-            url = self.image.url 
+            url = self.image.url
         except:
             url = ''
         return url
 
+
 class Feedback(models.Model):
-    author = models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     text = models.CharField(max_length=255)
-    feedback = models.ForeignKey(Product,on_delete=models.CASCADE,null=True,blank=True)
+    feedback = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
+
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True,blank=True)
+    item = models.ForeignKey(Product,on_delete=models.SET_NULL,null=True,blank=True)
+    quantity = models.IntegerField(default=1,null=True,blank=True)
+
+    @property
+    def get_price(self):
+        return self.item.price
+
 

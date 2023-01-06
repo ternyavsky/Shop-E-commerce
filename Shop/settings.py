@@ -134,7 +134,7 @@ STATICFILES_DIRS = [
 MEDIA_URL = 'images/'
 MEDIA_ROOT = os.path.join(BASE_DIR / 'images/')
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True

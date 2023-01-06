@@ -2,7 +2,48 @@
 {% load static %} 
 
 {% block body %} 
-{% include  'Main/header.html'%}
+<nav class="fh5co-nav" role="navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-xs-2">
+                <div id="fh5co-logo"><a href="{% url 'home' %}">Timar</a></div>
+            </div>
+            <div class="col-md-6 col-xs-6 text-center menu-1">
+                <ul>
+                    <li class="has-dropdown">
+                        <a href="{% url 'product' %}">Shop</a>
+                        <ul class="dropdown">
+                            <li><a href="#">Single Shop</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li class="has-dropdown">
+                        <a href="{% url 'service' %}">Services</a>
+                        <ul class="dropdown">
+                            <li><a href="#">Web Design</a></li>
+                            <li><a href="#">eCommerce</a></li>
+                            <li><a href="#">Branding</a></li>
+                            <li><a href="#">API</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 col-xs-4 text-right hidden-xs menu-2">
+                <ul>
+                        
+                    {% if user.is_authenticated %}
+                    <li class="shopping-cart"><a href="{% url 'cart' %}"  class="cart"><span><small>{{ quant }}</small><i class="icon-shopping-cart"></i></span></a></li>
+                    <li><a href="{% url 'account' user.id %}">Hello, {{user.username}}</a>|<a href="{% url 'lout' %}">Logout</a></li>
+                    {% else %}
+                    <li><a href="{% url 'lin' %}" >Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+</nav>
 <div class="container">
 <div class="row">
     <div class="col-lg-12">
@@ -13,15 +54,14 @@
             <table class="table">
                 <tr>
                
-                    <th><h5>Items: <strong>{{order.get_cart_items}}</strong></h5></th>
-                    {% if user.is_authenticated %}
-                    <th><h5>Total:<strong> {{order.get_cart_total|floatformat:2}}$</strong></h5></th>
+                    <th><h5>Items: <strong>{{ quant }}</strong></h5></th>
+                    
+                    <th><h5>Total:<strong> {{ total_price}}$</strong></h5></th>
                     <th>
-                    {% else %}
-                    <th><h5>Total:<strong> {{order.get_cart_total|floatformat:2}}</strong></h5></th>
-                    <th> 
+                    
+                    
 
-                        {% endif %}
+                   
 
                         <a  style="float:right; margin:5px;" class="btn btn-success" href="#">Checkout order</a>
                     </th>
@@ -37,23 +77,28 @@
                 <div style="flex:1"><strong>Quantity</strong></div>
                 <div style="flex:1"><strong>Total</strong></div>
             </div>
-            {% for item in items %}
+            
+            {% for item in objects %}
+           
             <div class="cart-row">
-                <div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
-                <div style="flex:2"><p>{{item.product.name}}</p></div>
-                <div style="flex:1"><p>{{item.product.price|floatformat:2}}$</p></div>
+                <div style="flex:2"><img class="row-image" src="{{item.item.imageURL}}" width="50" height="50"></div>
+              
+                <div style="flex:2"><p>{{ item.item }};</p></div>
+                
+                <div style="flex:1"><p>{{ item.item.price }}$</p></div>
                 <div style="flex:1">
                     <p class="quantity">{{item.quantity}}</p>
                     <div class="quantity">
-                        <img data-product="{{item.product.id}}" data-action="add" class="chg-quantity update-cart" src="{% static  'store/img/up.png' %}">
+                        <img data-product="{{item.product.id}}" data-action="add" class="chg-quantity update-cart" width="25" height="25" src="{% static  'Main/img/up.png' %}">
                 
-                        <img data-product="{{item.product.id}}" data-action="remove" class="chg-quantity update-cart" src="{% static  'store/img/down.png' %}">
+                        <img data-product="{{item.product.id}}" data-action="remove" class="chg-quantity update-cart" width="25" height="25" src="{% static  'Main/img/down.png' %}">
                     </div>
                 </div>
-                <div style="flex:1"><p>{{item.get_total|floatformat:2}}$</p></div>
+              
             </div>
             {% endfor %}
-<h1>cart</h1>
+
+
 </div>
 {% include 'Main/footer.html' %}
 {% endblock %}
